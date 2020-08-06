@@ -11,13 +11,13 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String args[]) throws IOException, MqttException {
-        String csvPath = "C:\\Users\\tomba\\Downloads\\788816_1355729_compressed_iot_telemetry_data.csv\\iot_telemetry_data.csv";
+        String csvPath = "/home/thomasbaines/Desktop/CSVtoMQTTtest/iot_telemetry_data.csv";
         String row = "";
 
-        String topic = "tst";
+        String topic = "test";
         String content = "";
         int qos = 2;
-        String broker = "tcp://mqtt.eclipse.org:1883";
+        String broker = "tcp://192.168.0.87:1883";
         String clientId = "JavaSample";
         MemoryPersistence persistence = new MemoryPersistence();
 
