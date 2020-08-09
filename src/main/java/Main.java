@@ -14,7 +14,7 @@ public class Main {
     public static void main(String args[]) throws IOException, MqttException, InterruptedException {
         //MQTT Variables
         String csvPath = "/home/thomasbaines/Desktop/CSVtoMQTTtest/iot_telemetry_data.csv";
-        String broker = "tcp://192.168.0.87:1883";
+        String broker = "tcp://192.168.1.249:1883";
         String topic = "test";
         String clientId = "JavaSample";
         String content = "";
@@ -39,7 +39,7 @@ public class Main {
 
         //Reads each line of the CSV file and converts it to MQTT message.
         while ((row = csvReader.readLine()) != null) {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.MILLISECONDS.sleep(500);
             String[] data = row.split(",");
 
             //checks which device sent that reading.
@@ -54,7 +54,7 @@ public class Main {
             }
 
             //Formats message
-            System.out.println("TS: " + readingNumber + "Device: " + deviceNumber +  " Temp: " + data[8]);
+            System.out.println("TS: " + readingNumber + " Device: " + deviceNumber +  " Temp: " + data[8]);
             content= readingNumber + "," + deviceNumber + "," + data[8];
             System.out.println("Publishing message: "+content + " " + data[1]);
             MqttMessage message = new MqttMessage(content.getBytes());
